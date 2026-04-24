@@ -12,7 +12,7 @@ export interface Blog {
 let currentLanguage = DEFAULT_LANGUAGE;
 
 const api = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 10000,
   maxRedirects: 0,
   validateStatus: (status) => status >= 200 && status < 400,
