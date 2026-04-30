@@ -115,3 +115,104 @@ body {
 .animate-lang-bounce {
   animation: lang-bounce 1s ease-in-out infinite;
 }
+
+/* Documentation button — flashy animation */
+@keyframes doc-gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes doc-glow-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 8px rgba(20, 184, 166, 0.4),
+      0 0 20px rgba(16, 185, 129, 0.2),
+      0 0 0 0 rgba(20, 184, 166, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 14px rgba(20, 184, 166, 0.6),
+      0 0 36px rgba(16, 185, 129, 0.3),
+      0 0 0 4px rgba(20, 184, 166, 0.1);
+  }
+}
+
+@keyframes doc-shimmer-flash {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60%, 100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
+@keyframes doc-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.btn-doc-animated {
+  position: relative !important;
+  overflow: hidden !important;
+  background: linear-gradient(135deg, #0d9488, #10b981, #14b8a6, #2dd4bf) !important;
+  background-size: 300% 300% !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  animation:
+    doc-gradient-shift 4s ease infinite,
+    doc-glow-pulse 2s ease-in-out infinite,
+    doc-bounce 2s ease-in-out infinite !important;
+}
+
+.btn-doc-animated svg {
+  color: rgba(255, 255, 255, 0.85) !important;
+  stroke: rgba(255, 255, 255, 0.85) !important;
+}
+
+.btn-doc-animated::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  animation: doc-shimmer-flash 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-doc-animated:hover {
+  animation: none !important;
+  background: linear-gradient(135deg, #0f766e, #059669) !important;
+  background-size: 100% 100% !important;
+  box-shadow:
+    0 0 20px rgba(20, 184, 166, 0.5),
+    0 0 40px rgba(16, 185, 129, 0.25),
+    0 8px 24px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px) scale(1.03) !important;
+}
+
+.btn-doc-animated:hover::before {
+  animation: none;
+  opacity: 0;
+}
